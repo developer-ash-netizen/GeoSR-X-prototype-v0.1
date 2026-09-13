@@ -1,0 +1,28 @@
+project:
+  name: GeoSR-X
+  scale: 4
+  channels: 4
+
+data:
+  train_hr: data/train/hr
+  train_lr: data/train/lr
+  val_hr: data/val/hr
+  val_lr: data/val/lr
+
+model:
+  channels: 4
+  features: 64
+  blocks: 8
+  scale: 4
+
+training:
+  epochs: 50
+  batch_size: 4
+  lr: 0.0002
+  num_workers: 2
+  device: cuda
+
+loss:
+  pixel: 1.0
+  consistency: 0.5
+  spectral: 0.1
