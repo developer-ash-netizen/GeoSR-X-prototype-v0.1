@@ -1,4 +1,4 @@
-# GeoSR-X Prototype v0.1
+# AntarNetra Prototype v0.1
 
 Trustworthy AI Super-Resolution for Medium-Resolution Satellite Imagery.
 
