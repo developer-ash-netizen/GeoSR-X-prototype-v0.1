@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoSR-X · which pixels are real</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>GeoSR-X</h1>
+    <p>Sentinel-2 below 4&nbsp;m, with every region labelled by the evidence that produced it.</p>
+  </div>
+  <div class="topmeta">Team AntarNetra · SIH26142 · runs fully offline</div>
+</header>
+
+<main class="grid">
+  <aside class="left">
+    <section class="card" id="sceneCard">
+      <h2>Scene</h2>
+      <div class="seg" id="srcSeg">
+        <button data-src="synth" class="on">Synthetic (known truth)</button>
+        <button data-src="upload">Upload stack</button>
+      </div>
+      <div id="synthCtl">
+        <label>Seed <input type="number" id="seed" value="7" min="1" max="99999"></label>
+        <label>Revisits <output id="ndO">8</output><input type="range" id="nd" min="3" max="12" value="8"></label>
+        <label>Cloud burden <output id="clO">1.0</output><input type="range" id="cl" min="0" max="3" step="0.1" value="1"></label>
+        <label class="chk"><input type="checkbox" id="chg" checked> Real change mid-series (new buildings, flooded field)</label>
+      </div>
+      <div id="upCtl" hidden>
+        <p class="hint">One GeoTIFF per date, bands B02, B03, B04, B08 at 10&nbsp;m, same grid, date in the filename. Sample stack: <code>python tools/make_sample_stack.py</code></p>
+        <input type="file" id="files" multiple accept=".tif,.tiff">
+        <div id="upMsg" class="hint"></div>
+      </div>
+      <label>Gate
+        <select id="gate"><option value="evidence">Evidence-gated (spec)</option><option value="ungated">Ungated prior (ablation)</option></select>
+      </label>
+      <button class="go" id="run" disabled>Reconstruct</button>
+      <div id="bootMsg" class="hint">Starting…</div>
+    </section>
+
+    <section class="card">
+      <h2>Pipeline</h2>
+      <ol class="rail" id="rail"></ol>
+    </section>
+  </aside>
+
+  <section class="center">
+    <div class="viewbar">
+      <div class="pick">
+        <span>Left</span><select id="selA"></select>
+        <span>Right</span><select id="selB"></select>
+      </div>
+      <div class="tog">
+        <label><input type="checkbox" id="ovProv"> provenance</label>
+        <label><input type="checkbox" id="ovReg"> regions</label>
+        <label id="ovTruthL" hidden><input type="checkbox" id="ovTruth"> true change</label>
+        <input type="range" id="ovOp" min="10" max="100" value="55" title="overlay opacity">
+      </div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="empty" id="empty">
+        <p class="big">Every team will show a sharper image.</p>
+        <p>This shows which pixels of it are measurement, and how far to trust each region.</p>
+      </div>
+      <div class="frame" id="frame" hidden>
+        <img id="imgA" alt="">
+        <img id="imgB" alt="">
+        <img id="imgProv" class="ov" alt="">
+        <img id="imgReg" class="ov" alt="">
+        <img id="imgTruth" class="ov" alt="">
+        <img id="imgSel" class="ov" alt="">
+        <div class="handle" id="handle"><span></span></div>
+        <div class="lab l" id="labA"></div><div class="lab r" id="labB"></div>
+      </div>
+    </div>
+    <div class="legend" id="legend" hidden>
+      <i class="sw t"></i>multi-date observed <i class="sw a"></i>single-date observed <i class="sw c"></i>prior-generated
+      <span class="px" id="px"></span>
+    </div>
+
+    <nav class="tabs" id="tabs">
+      <button data-t="trust" class="on">Trust</button>
+      <button data-t="val">Validation</button>
+      <button data-t="chg">Change</button>
+      <button data-t="cal">Calibration</button>
+      <button data-t="acq">Acquisitions</button>
+      <button data-t="exp">Export</button>
+    </nav>
+    <section class="panel" id="panel"><p class="hint">Run a reconstruction to populate these panels.</p></section>
+  </section>
+
+  <aside class="right">
+    <section class="card" id="inspect">
+      <h2>Region inspector</h2>
+      <p class="hint">Click the image to inspect a region.</p>
+    </section>
+    <section class="card note">
+      <h2>Read this first</h2>
+      <p>Prototype. Numbers come from synthetic scenes with known 2.5&nbsp;m truth; nothing here is a claim about Indian terrain. The prior path is a small learned stand-in for a Swin/RRDB or SEN2SR network. Hallucination is measured, located and labelled, not eliminated.</p>
+    </section>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

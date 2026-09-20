@@ -1,0 +1,271 @@
+{
+ "generator": "geosrx-proto-0.4",
+ "created": "2026-09-20T23:40:46",
+ "scene": "uploaded-stack",
+ "crs": "EPSG:32644",
+ "pixel_size_m": 2.5,
+ "scale_factor": 4,
+ "bands": [
+  "SR_B02",
+  "SR_B03",
+  "SR_B04",
+  "SR_B08",
+  "PROVENANCE_CLASS",
+  "UNCERTAINTY_P90_MAE"
+ ],
+ "provenance_classes": {
+  "0": "multi-date observed",
+  "1": "single-date observed",
+  "2": "prior-generated"
+ },
+ "error_budget": {
+  "registration": {
+   "method": "masked xcorr + Lucas-Kanade",
+   "shifts_px": [
+    [
+     -0.762382505591638,
+     0.6566696386273676
+    ],
+    [
+     0.5793261120532449,
+     -0.08781290598797344
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "ncc": [
+    0.9162589872481105,
+    0.870921080970523,
+    1.0
+   ],
+   "max_true_error_px": null
+  },
+  "radiometric": {
+   "gain": [
+    [
+     0.987370581761587,
+     0.9539664550311285,
+     0.9799014430602025,
+     1.0560872966911348
+    ],
+    [
+     0.9770886956967505,
+     0.9987512201433567,
+     1.0052435714259655,
+     1.0312902451423034
+    ],
+    [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "offset": [
+    [
+     0.004025663418283248,
+     0.007937928029655369,
+     0.0011618936485347686,
+     0.0030282951205515274
+    ],
+    [
+     0.0007570725504125675,
+     0.001328063775044362,
+     -0.0006460826038326372,
+     0.00010698211026069749
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "noise_sigma": [
+    0.0021864576265215874,
+    0.0022906733211129904,
+    0.00253370706923306,
+    0.0030291194561868906
+   ]
+  },
+  "fidelity": {
+   "rms_residual_target_date": 0.0032460326758317233
+  },
+  "uncertainty_by_class": {
+   "water": {
+    "regions": 12,
+    "mean_p90_bound": 0.0071615719555184225,
+    "mean_u0": 0.0064792965920422475
+   },
+   "vegetation": {
+    "regions": 192,
+    "mean_p90_bound": 0.025558259619479138,
+    "mean_u0": 0.013810837777613027
+   },
+   "built-up": {
+    "regions": 7,
+    "mean_p90_bound": 0.04165214318700485,
+    "mean_u0": 0.02241872702644327
+   },
+   "bare / other": {
+    "regions": 35,
+    "mean_p90_bound": 0.017390738340378995,
+    "mean_u0": 0.012737090524961333
+   }
+  },
+  "by_provenance": {
+   "multi-date observed": {
+    "area_fraction": 0.273406982421875,
+    "mean_p90_bound": 0.020990934485859754
+   },
+   "single-date observed": {
+    "area_fraction": 0.717742919921875,
+    "mean_p90_bound": 0.0249551230784048
+   },
+   "prior-generated": {
+    "area_fraction": 0.00885009765625,
+    "mean_p90_bound": 0.0342665531539186
+   }
+  }
+ },
+ "coverage_report": {
+  "nominal": 0.9,
+  "held_out_test": {
+   "levels": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+   ],
+   "overall": [
+    0.5066985645933014,
+    0.6377990430622009,
+    0.7339712918660287,
+    0.8258373205741627,
+    0.8818181818181818,
+    0.9220095693779904,
+    0.9545454545454546
+   ],
+   "per_class": {
+    "water": {
+     "n_cal": 224,
+     "n_test": 237,
+     "coverage": [
+      0.43037974683544306,
+      0.5611814345991561,
+      0.6582278481012658,
+      0.7510548523206751,
+      0.8270042194092827,
+      0.8860759493670886,
+      0.9451476793248945
+     ],
+     "q90": 1.105300838414178
+    },
+    "vegetation": {
+     "n_cal": 1402,
+     "n_test": 1326,
+     "coverage": [
+      0.5082956259426847,
+      0.6417797888386124,
+      0.7322775263951734,
+      0.8355957767722474,
+      0.8936651583710408,
+      0.9366515837104072,
+      0.9615384615384616
+     ],
+     "q90": 1.8505944411937376
+    },
+    "built-up": {
+     "n_cal": 119,
+     "n_test": 167,
+     "coverage": [
+      0.6706586826347305,
+      0.7365269461077845,
+      0.8622754491017964,
+      0.9281437125748503,
+      0.9580838323353293,
+      0.9820359281437125,
+      0.9880239520958084
+     ],
+     "q90": 1.8579174070800466
+    },
+    "bare / other": {
+     "n_cal": 324,
+     "n_test": 360,
+     "coverage": [
+      0.475,
+      0.6277777777777778,
+      0.7305555555555555,
+      0.7916666666666666,
+      0.8388888888888889,
+      0.8638888888888889,
+      0.9194444444444444
+     ],
+     "q90": 1.3653619173309433
+    }
+   },
+   "n_test": 2090,
+   "global_only": [
+    0.5143540669856459,
+    0.6320574162679425,
+    0.7320574162679426,
+    0.8373205741626795,
+    0.8813397129186603,
+    0.9311004784688995,
+    0.9641148325358851
+   ],
+   "class_names": [
+    "water",
+    "vegetation",
+    "built-up",
+    "bare / other"
+   ],
+   "n_cal_regions": 2069
+  },
+  "note": "Region-level split-conformal; coverage measured on scenes disjoint from calibration."
+ },
+ "lineage": {
+  "options": {
+   "gate": "evidence"
+  },
+  "dates": [
+   "2026-04-03",
+   "2026-05-03",
+   "2026-05-17"
+  ],
+  "target_date": "2026-05-17",
+  "target_index": 2,
+  "dates_used": [
+   true,
+   true,
+   true
+  ],
+  "clean_fraction": [
+   0.90625,
+   0.837646484375,
+   0.9404296875
+  ],
+  "stages": [
+   "L0 cloud/quality/co-registration",
+   "L1 evidence tensor",
+   "L2 fusion",
+   "L3 fidelity+prior",
+   "L4 evidence gate",
+   "L5 provenance+risk",
+   "L6 self-consistency",
+   "L7 conformal",
+   "L8 export"
+  ]
+ },
+ "limitations": [
+  "Prototype validated on synthetic data with known 2.5 m truth; no Indian HR reference performance is claimed.",
+  "Prior path is a gradient-boosted stand-in for a Swin/RRDB or SEN2SR network.",
+  "Conformal guarantees assume exchangeable regions; spatial correlation makes this approximate.",
+  "Hallucination is measured, located and labelled, not eliminated."
+ ]
+}
