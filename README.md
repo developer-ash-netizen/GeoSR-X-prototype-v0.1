@@ -1,4 +1,4 @@
-# GeoSR-X v4 — working prototype
+# ANTARNETRA v4 — working prototype
 
 Team AntarNetra · SIH 2026 · PS SIH26142 (NTRO)
 
