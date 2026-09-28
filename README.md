@@ -1,4 +1,4 @@
-# GeoSR-X v4 — working prototype
+# ANTARNETRA v4 — working prototype
 
 Team AntarNetra · SIH 2026 · PS SIH26142 (NTRO)
 
@@ -32,7 +32,7 @@ Run the checks with `python -m tests.test_pipeline`.
 | L9 validation | `backend/validation.py` | Tier A/B/C + change-preservation test |
 | API / UI | `backend/server.py`, `frontend/` | stdlib HTTP server, vanilla-JS analyst view |
 
-## What is real and what is a stand-in (say this to a judge)
+## What is real and what is a stand-in 
 
 - **Data**: no network and no Indian HR reference here, so scenes are synthetic with known 2.5 m truth (sub-pixel shifts,
   PSF, atmosphere, clouds/shadows, undetected haze, phenology drift, real change). All metrics are on that data.
