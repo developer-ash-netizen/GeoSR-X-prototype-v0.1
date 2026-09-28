@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from .detail_branch import DetailBranch
 from .fusion_gate import FusionGate
 
-class GeoSRX(nn.Module):
+class Antarnetra(nn.Module):
     def __init__(self, channels=4, features=64, blocks=8, scale=4):
         super().__init__()
         self.scale = scale

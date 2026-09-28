@@ -7,8 +7,8 @@ const pct = x => x == null ? "–" : (100 * x).toFixed(1) + "%";
 const PROV = ["multi-date observed", "single-date observed", "prior-generated"];
 const PC = ["var(--teal)", "var(--amber)", "var(--crim)"];
 const LAYERS = {
-  sr: "GeoSR-X output", bicubic: "Single-date bicubic (what S2 shows)", fid: "Fidelity path", prior: "Prior path (ungated)",
-  sr_fcc: "GeoSR-X false colour", gt: "Ground truth 2.5 m", err: "Absolute error", risk: "Hallucination risk",
+  sr: "Antarnetra output", bicubic: "Single-date bicubic (what S2 shows)", fid: "Fidelity path", prior: "Prior path (ungated)",
+  sr_fcc: "Antarnetra false colour", gt: "Ground truth 2.5 m", err: "Absolute error", risk: "Hallucination risk",
   uncertainty: "Calibrated 90% bound", alpha: "Gate weight α", E1: "E1 temporal support", E2: "E2 disagreement",
   E3: "E3 structured change", E4: "E4 spectral coherence", provenance: "Provenance"
 };

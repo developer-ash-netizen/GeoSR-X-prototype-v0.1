@@ -60,7 +60,7 @@ def tier_b(scene, R, prior):
     if m.sum() < 200:
         return None
     preds = {
-        "GeoSR-X (gated), date hidden": sensor.forward(sr_wo, sh),
+        "Antarnetra (gated), date hidden": sensor.forward(sr_wo, sh),
         "fidelity path only, date hidden": sensor.forward(fid_wo, sh),
         "single-date bicubic, degraded": sensor.forward(np.clip(sensor.upsample(scene.lr[R.ref]), 0, 1), sh),
         "single-date copy (registered)": ndi.shift(R.lr_norm[R.ref], (0, -sh[0], -sh[1]), order=3, mode="nearest"),
@@ -122,7 +122,7 @@ def change_test(scene, R, naive_fid):
     rows = [
         dict(method="single-date bicubic", rmse=round(rmse(R.bicubic), 4)),
         dict(method="naive temporal fusion (no E3)", rmse=round(rmse(naive_fid), 4)),
-        dict(method="GeoSR-X change-aware (E3 protects change)", rmse=round(rmse(R.sr), 4)),
+        dict(method="Antarnetra change-aware (E3 protects change)", rmse=round(rmse(R.sr), 4)),
     ]
     return dict(change_recall=round(rec, 3), false_flag_rate=round(fp, 4), rows=rows, n_core_px=int(core.sum()))
 
@@ -137,10 +137,10 @@ def run_validation(scene, R, prior, cb=None):
             "naive temporal fusion": naive,
             "fidelity path only": R.fid,
             "prior path only (ungated)": R.prior,
-            "GeoSR-X (evidence-gated)": R.sr,
+            "Antarnetra (evidence-gated)": R.sr,
         }
         V["tier_a"] = [dict(product=k, **tier_a_metrics(scene.gt, v, R.bicubic)) for k, v in variants.items()]
-        V["tier_c"] = tier_c(scene, {k: variants[k] for k in ("single-date bicubic", "fidelity path only", "prior path only (ungated)", "GeoSR-X (evidence-gated)")})
+        V["tier_c"] = tier_c(scene, {k: variants[k] for k in ("single-date bicubic", "fidelity path only", "prior path only (ungated)", "Antarnetra (evidence-gated)")})
         V["change"] = change_test(scene, R, naive)
         cov = float((R.mae <= R.bound).mean()) if np.isfinite(R.bound).any() else None
         V["scene_coverage90"] = cov

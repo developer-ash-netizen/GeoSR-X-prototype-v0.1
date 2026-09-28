@@ -43,7 +43,7 @@ python -m geosr.inference.bicubic --input data/example.tif --output outputs/bicu
 
 ## Predict
 ```bash
-python -m geosr.inference.predict --input data/example.tif --output outputs/geosr_x.tif --checkpoint checkpoints/geosr_x_latest.pt --uncertainty-output outputs/uncertainty.tif
+python -m geosr.inference.predict --input data/example.tif --output outputs/antarnetra.tif --checkpoint checkpoints/antarnetra_latest.pt --uncertainty-output outputs/uncertainty.tif
 ```
 
 Important: the SR output is a learned reconstruction, not a new physical satellite observation.

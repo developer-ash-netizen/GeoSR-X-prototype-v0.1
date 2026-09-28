@@ -1,7 +1,7 @@
 import argparse, torch
 import torch.nn.functional as F
 from geosr.data.raster import read_raster, write_raster
-from geosr.models.geosr import GeoSRX
+from geosr.models.geosr import Antarnetra
 
 p=argparse.ArgumentParser()
 p.add_argument('--input',required=True); p.add_argument('--output',required=True)
@@ -11,7 +11,7 @@ a=p.parse_args()
 device='cuda' if torch.cuda.is_available() else 'cpu'
 arr,profile=read_raster(a.input)
 x=torch.from_numpy(arr).float().unsqueeze(0).to(device)
-m=GeoSRX(a.channels,scale=a.scale).to(device)
+m=Antarnetra(a.channels,scale=a.scale).to(device)
 ckpt=torch.load(a.checkpoint,map_location=device)
 m.load_state_dict(ckpt['model']); m.eval()
 with torch.no_grad(): out=m(x)

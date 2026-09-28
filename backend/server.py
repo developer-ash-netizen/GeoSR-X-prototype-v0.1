@@ -1,4 +1,4 @@
-"""GeoSR-X prototype server. Standard library only (+ numpy/scipy/scikit-image/Pillow/tifffile).
+"""Antarnetra prototype server. Standard library only (+ numpy/scipy/scikit-image/Pillow/tifffile).
 
     python run.py            ->  http://127.0.0.1:8000
 
@@ -73,14 +73,14 @@ def run_job(jid, sid, gate):
         R = P.process(sc, STATE["prior"], STATE["calib"], cb=cb, gate=gate)
         cb("L8", "run", {}, None); t1 = time.time()
         d = os.path.join(OUT, sid); os.makedirs(d, exist_ok=True)
-        tif = os.path.join(d, f"geosrx_{sc.name}.tif")
+        tif = os.path.join(d, f"antarnetra_{sc.name}.tif")
         E.write_geotiff(tif, sc, R)
         cb("L8", "done", dict(file=os.path.basename(tif)), t1)
         cb("L9", "run", {}, None); t2 = time.time()
         Vres = V.run_validation(sc, R, STATE["prior"])
         cb("L9", "done", {}, t2)
         side = E.sidecar(sc, R, Vres, STATE["report"], dict(gate=gate))
-        json.dump(side, open(os.path.join(d, f"geosrx_{sc.name}_sidecar.json"), "w"), indent=1)
+        json.dump(side, open(os.path.join(d, f"antarnetra_{sc.name}_sidecar.json"), "w"), indent=1)
         json.dump(STATE["report"], open(os.path.join(d, "coverage_report.json"), "w"), indent=1)
         sess.update(R=R, V=Vres, gate=gate, cache={}, dir=d, tif=tif)
         job.update(status="done", total=round(time.time() - t0, 1))
@@ -198,7 +198,7 @@ def make_handler():
                 return self._json(d)
             if what == "download":
                 fn = {"geotiff": (sess["tif"], "image/tiff"),
-                      "sidecar": (os.path.join(sess["dir"], f"geosrx_{sc.name}_sidecar.json"), "application/json"),
+                      "sidecar": (os.path.join(sess["dir"], f"antarnetra_{sc.name}_sidecar.json"), "application/json"),
                       "coverage": (os.path.join(sess["dir"], "coverage_report.json"), "application/json")}.get(arg)
                 if not fn:
                     return self._json(dict(error="unknown download"), 404)
@@ -252,7 +252,7 @@ def make_handler():
 def serve(host="127.0.0.1", port=8000):
     threading.Thread(target=boot, daemon=True).start()
     srv = ThreadingHTTPServer((host, port), make_handler())
-    print(f"GeoSR-X on http://{host}:{port}", flush=True)
+    print(f"Antarnetra on http://{host}:{port}", flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

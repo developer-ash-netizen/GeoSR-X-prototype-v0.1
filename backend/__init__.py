@@ -1,1 +1,1 @@
-"""GeoSR-X prototype backend (Team AntarNetra, SIH26142)."""
+"""Antarnetra prototype backend (Team AntarNetra, SIH26142)."""

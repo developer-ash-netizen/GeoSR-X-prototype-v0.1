@@ -6,7 +6,7 @@ from .synth import CLASS_NAMES
 from .l4_l6 import PROV_NAMES
 from .l7_calibration import CLASSES
 
-VERSION = "geosrx-proto-0.4"
+VERSION = "antarnetra-proto-0.4"
 
 
 def _jsonable(o):
